@@ -27,7 +27,7 @@ const EmailSubscribe = () => {
                             <Fade left>
                                 <div className="input-group mb-3 rounded-5 w-50 mx-auto">
                                     <input type="email" className="form-control py-2" placeholder="Email" aria-label="Email" aria-describedby="button-addon2" />
-                                    <button className="btn btn-warning text-light" type="button" id="button-addon2">
+                                    <button className="btn btn-warning text-light mt-2" type="button" id="button-addon2">
                                         Subscribe
                                     </button>
                                 </div>

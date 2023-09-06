@@ -1,14 +1,16 @@
 import { useState } from "react";
 import Zoom from 'react-reveal/Zoom';
 import { PaymentMode } from "res/constants";
+import ReactGoogleAutocomplete from 'react-google-autocomplete'
 
-const BookingCard = ({ onClick, travelInfo, setTravelInfo }) => {
+const BookingCard = ({ onClick, travelInfo, setTravelInfo, ignoreValidation }) => {
 
     const hourValues = ['Hire Duration', '3 hours', '4 hours', '5 hours', '6 hours', '7 hours', '8 hours', '9 hours', '10 hours', '11 hours', '12 hours', '13 hours'];
     const [isOneWay, setOneWay] = useState(true);
     const [errors, setErrors] = useState({});
 
     const validate = () => {
+        if (ignoreValidation) return true;
         let tempErrors = {};
 
         if (!travelInfo?.pickupLocation) {
@@ -50,27 +52,21 @@ const BookingCard = ({ onClick, travelInfo, setTravelInfo }) => {
                 {isOneWay &&
                     <div>
                         <div className="form-floating mt-3 mb-3">
-                            <input
-                                type="text"
+                            <ReactGoogleAutocomplete
                                 className="form-control"
-                                id="desc"
-                                placeholder="Enter Destination Address"
-                                name="desc"
-                                value={travelInfo?.pickupLocation}
-                                onChange={(e) => setTravelInfo({ ...travelInfo, pickupLocation: e.target.value })}
+                                apiKey={'AIzaSyBq0S-tRVqgncxagGf9TTK6o8uZ-GEhdzk'}
+                                onPlaceSelected={(place) => setTravelInfo(prev => ({ ...prev, pickupLocation: place?.formatted_address }))}
+                                defaultValue={travelInfo?.pickupLocation}
                             />
                             <label htmlFor="desc"><i className="fas fa-thin fa-crosshairs mr-5" /> Where From:</label>
                         </div>
                         {errors.pickupLocation && <p className="text-danger">{errors.pickupLocation}</p>}
                         <div className="form-floating mt-3 mb-3">
-                            <input
-                                type="text"
+                            <ReactGoogleAutocomplete
                                 className="form-control"
-                                id="descTo"
-                                placeholder="Enter Destination Address"
-                                name="descTo"
-                                value={travelInfo?.destLocation}
-                                onChange={(e) => setTravelInfo({ ...travelInfo, destLocation: e.target.value })}
+                                apiKey={'AIzaSyBq0S-tRVqgncxagGf9TTK6o8uZ-GEhdzk'}
+                                onPlaceSelected={(place) => setTravelInfo(prev => ({ ...prev, destLocation: place?.formatted_address }))}
+                                defaultValue={travelInfo?.destLocation}
                             />
                             <label htmlFor="descTo"><i className="fas fa-map mr-5" /> Where To:</label>
                         </div>
@@ -91,6 +87,7 @@ const BookingCard = ({ onClick, travelInfo, setTravelInfo }) => {
                             />
                             <label htmlFor="desc"><i className="fas fa-thin fa-crosshairs mr-5" /> Where From:</label>
                         </div>
+
                         {errors.pickupLocation && <p className="text-danger">{errors.pickupLocation}</p>}
                         <select
                             className="form-select mb-3"

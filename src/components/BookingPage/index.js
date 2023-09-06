@@ -12,6 +12,7 @@ import BookingAPI from "res/apis/booking";
 const BookingPage = () => {
 
     const [index, setIndex] = useState(0);
+    
 
     const [travelInfo, setTravelInfo] = useState({
         pickupLocation: '',
@@ -35,6 +36,22 @@ const BookingPage = () => {
         if (index < 2)
             setIndex(prev => prev + 1);
     }
+    
+    useEffect(() => {
+        // Parse the URL parameters
+        const params = new URLSearchParams(window.location.search);
+        
+        // Extract the 'from' and 'to' values
+        const fromValue = params.get('from');
+        const toValue = params.get('to');
+
+        // Update the state with the extracted values
+        setTravelInfo(prevState => ({
+            ...prevState,
+            pickupLocation: fromValue || prevState.pickupLocation,
+            destLocation: toValue || prevState.destLocation
+        }));
+    }, []); // Empty dependency array ensures this useEffect runs only once when the component mounts
 
     useEffect(() => {
         if (paymentInfo?.paymentMethodID) {

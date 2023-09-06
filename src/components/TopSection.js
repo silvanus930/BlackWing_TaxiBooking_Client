@@ -14,6 +14,7 @@ import BookingCard from './BookingPage/Components/BookingCard'
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
 import { PaymentMode } from 'res/constants'
 import SearchPage from './Search Page/SearchPage'
+import Searchbar from './Searchbar'
 
 const TopSection = () => {
 
@@ -122,10 +123,9 @@ const TopSection = () => {
 
                     <div className="py-9" style={{ position: 'absolute', top: 50, right: 10, zIndex: 999 }}>
                         <Fade right>
-                            <BookingCard onClick={handleBook} travelInfo={travelInfo} setTravelInfo={setTravelInfo} />
+                            <BookingCard onClick={handleBook} travelInfo={travelInfo} setTravelInfo={setTravelInfo} ignoreValidation />
                         </Fade>
                     </div>
-
                 </div>
             </section>
         </Wrapper>

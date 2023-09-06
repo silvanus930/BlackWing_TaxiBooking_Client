@@ -3,10 +3,12 @@ import { Card, Container, Label, Form, FormGroup, Input, Button } from "reactstr
 import Fade from 'react-reveal/Fade';
 import Swal from 'sweetalert2';
 import AuthAPI from "res/apis/auth";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -20,6 +22,10 @@ const SignIn = () => {
                     icon: 'success',
                     title: 'Signed in successfully',
                     text: `Welcome back, ${email}!`
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        navigate('/');
+                    }
                 });
             }).catch(e => {
                 console.log('Error:', e)
