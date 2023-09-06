@@ -123,7 +123,7 @@ const Footer = () => {
 
                     {/* copyright text  */}
                     <div className="flex flex-col justify-center items-center py-12 space-y-3">
-                        <img src="../../assets/logo.jpg" alt="logo" width="150px" height="100px" />
+                        <img src="../../assets/logo.png" alt="logo" width="150px" height="100px" />
                         <p className="text-center text-white text-sm">
                             © Jamrock taxi Terms and Conditions. Made by ❤ S.M.Abtahi Noor
                         </p>

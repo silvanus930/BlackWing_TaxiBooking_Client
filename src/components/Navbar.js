@@ -22,11 +22,11 @@ const Navbar = () => {
 
     return (
         <>
-            <header className="block h-20">
-                <nav className="navbar navbar-expand-lg navbar-light shadow-lg fixed-top bg-white ">
+            <div className="block h-20" style={{position: 'absolute'}}>
+                <nav className="navbar navbar-expand-lg navbar-light shadow-lg fixed-top top_blur">
                     <div className="container-fluid px-5">
                         <NavLink className="navbar-brand me-5" to="/">
-                            <img src="../../assets/logo.jpg" alt="logo" width="150px" height="100px" />
+                            <img src="../../assets/logo.png" alt="logo" width="170px"/>
                         </NavLink>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
@@ -35,40 +35,40 @@ const Navbar = () => {
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center ">
                                 <li className="nav-item me-2">
-                                    <NavLink className="nav-link active" aria-current="page" to="/"><span className="text-sm text-gray-400">Home</span></NavLink>
+                                    <NavLink className="nav-link active" aria-current="page" to="/"><span className="text-base text-white font-semibold">Home</span></NavLink>
                                 </li>
                                 <li className="nav-item border-end border-secondary pe-3 me-2">
-                                    <NavLink className="nav-link cursor-pointer text-gray-600" to="/contact"><span className="text-sm text-gray-400">Contact Us</span></NavLink>
+                                    <NavLink className="nav-link cursor-pointer text-gray-600" to="/contact"><span className="text-base text-white font-semibold">Contact Us</span></NavLink>
                                 </li>
 
 
                                 <li className="nav-item dropdown me-2">
                                     <NavLink className="nav-link dropdown-toggle" to="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <span className="text-sm text-gray-400">For customers</span>
+                                        <span className="text-base text-white font-semibold">For customers</span>
                                     </NavLink>
                                     <Zoom>
                                         <ul className="dropdown-menu shadow-sm mt-4" aria-labelledby="navbarDropdown">
-                                            <li><span className="dropdown-item"><span className="text-sm text-gray-400">Transfer</span></span></li>
-                                            <li><span className="dropdown-item"><span className="text-sm text-gray-400">Kiwitaxi System</span></span></li>
+                                            <li><span className="dropdown-item"><span className="text-base text-gray-400 font-semibold">Transfer</span></span></li>
+                                            <li><span className="dropdown-item"><span className="text-base text-gray-400 font-semibold">Kiwitaxi System</span></span></li>
                                         </ul>
                                     </Zoom>
                                 </li>
                                 <li className="nav-item dropdown me-2">
                                     <NavLink className="nav-link dropdown-toggle" to="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <span className="text-sm text-gray-400">For partners</span>
+                                        <span className="text-base text-white font-semibold">For partners</span>
                                     </NavLink>
                                     <Fade top>
                                         <ul className="dropdown-menu shadow-sm mt-4" aria-labelledby="navbarDropdown">
-                                            <li><span className="dropdown-item"><span className="text-sm text-gray-400">For travel agencies</span></span></li>
-                                            <li><span className="dropdown-item"><span className="text-sm text-gray-400 text-gray-400">For webmasters</span></span></li>
-                                            <li><span className="dropdown-item"><span className="text-sm text-gray-400 text-gray-400">For transfer compnaies</span></span></li>
-                                            <li><span className="dropdown-item"><span className="text-sm text-gray-400">For individual drivers</span></span></li>
+                                            <li><span className="dropdown-item"><span className="text-base text-gray-400 font-semibold">For travel agencies</span></span></li>
+                                            <li><span className="dropdown-item"><span className="text-base text-gray-400 font-semibold">For webmasters</span></span></li>
+                                            <li><span className="dropdown-item"><span className="text-base text-gray-400 font-semibold">For transfer compnaies</span></span></li>
+                                            <li><span className="dropdown-item"><span className="text-base text-gray-400 font-semibold">For individual drivers</span></span></li>
                                         </ul>
                                     </Fade>
                                 </li>
-                                <li className="nav-item me-2">
-                                    <NavLink className="nav-link active" aria-current="page" to="/car-cart"><span className="text-sm text-gray-400">Select Car</span></NavLink>
-                                </li>
+                                {/* <li className="nav-item me-2">
+                                    <NavLink className="nav-link active" aria-current="page" to="/car-cart"><span className="text-base text-white font-semibold">Select Car</span></NavLink>
+                                </li> */}
 
 
                             </ul>
@@ -78,7 +78,7 @@ const Navbar = () => {
                             <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
                                 {/* <li className="nav-item dropdown me-2">
                                     <NavLink className="nav-link " to="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <span className="text-sm text-gray-400">BYN</span>
+                                        <span className="text-base text-white font-semibold">BYN</span>
                                     </NavLink>
 
                                     <Zoom>
@@ -99,7 +99,6 @@ const Navbar = () => {
                                             })}
                                         </ul>
                                     </Zoom>
-
                                 </li> */}
                                 <li className="nav-item dropdown me-2 border-end border-secondary pe-3">
                                     <NavLink className="nav-link " to="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -127,17 +126,17 @@ const Navbar = () => {
                                 </li>
 
                                 {!isLogin() && <li className="nav-item">
-                                    <button className="btn" onClick={handleLogin} ><span className="text-sm text-gray-400">Login</span></button>
+                                    <button className="btn" onClick={handleLogin} ><span className="text-base text-white font-semibold">Login</span></button>
                                 </li>}
 
                                 {isLogin() && <li className="nav-item dropdown">
                                     <NavLink className="nav-link dropdown-toggle" to="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <span className="text-sm text-gray-400">User</span>
+                                        <span className="text-base text-white font-semibold">User</span>
                                     </NavLink>
                                     <Zoom>
                                         <ul className="dropdown-menu shadow-sm" style={{ width: '100px' }} aria-labelledby="navbarDropdown">
-                                            <NavLink className="nav-link active" aria-current="page" to="/profile"><li><span className="dropdown-item"><span className="text-sm text-gray-400">Profile</span></span></li></NavLink>
-                                            <li><span className="dropdown-item"><span className="text-sm text-gray-400">Log Out</span></span></li>
+                                            <NavLink className="nav-link active" aria-current="page" to="/profile"><li><span className="dropdown-item"><span className="text-base text-gray-400 font-semibold">Profile</span></span></li></NavLink>
+                                            <li><span className="dropdown-item"><span className="text-base text-gray-400 font-semibold">Log Out</span></span></li>
                                         </ul>
                                     </Zoom>
                                 </li>}
@@ -146,7 +145,7 @@ const Navbar = () => {
                         </div>
                     </div>
                 </nav>
-            </header >
+            </div >
         </>
     )
 }

@@ -7,11 +7,13 @@ const Step = ({ current = 0 }) => {
 
     return (
         <Fade left>
-            <div style={{ margin: '20px' }} >
+            <div style={{ margin: '20px', position: 'fixed' }} >
                 <Steps
                     current={current}
+                    direction="vertical"
                     items={[
                         { title: 'Get Started' },
+                        { title: 'Select Car', },
                         { title: 'Booking Details', },
                         { title: 'Payment Details', },
                     ]}

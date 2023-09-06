@@ -8,11 +8,12 @@ import Step from "./Components/Step";
 import { PaymentMode } from "res/constants";
 import Swal from "sweetalert2";
 import BookingAPI from "res/apis/booking";
+import CarsCart from "components/Search Page/CarsCart";
 
 const BookingPage = () => {
 
     const [index, setIndex] = useState(0);
-    
+
 
     const [travelInfo, setTravelInfo] = useState({
         pickupLocation: '',
@@ -33,14 +34,14 @@ const BookingPage = () => {
     })
 
     const handleNext = () => {
-        if (index < 2)
+        if (index < 3)
             setIndex(prev => prev + 1);
     }
-    
+
     useEffect(() => {
         // Parse the URL parameters
         const params = new URLSearchParams(window.location.search);
-        
+
         // Extract the 'from' and 'to' values
         const fromValue = params.get('from');
         const toValue = params.get('to');
@@ -75,7 +76,7 @@ const BookingPage = () => {
     return (
         <div style={{ marginTop: '30px' }}>
             <Row>
-                <Col>
+                <Col md={4} className="d-flex justify-content-center">
                     <Step current={index} />
                 </Col>
                 {index == 0 && <Col>
@@ -86,6 +87,9 @@ const BookingPage = () => {
                     />
                 </Col>}
                 {index == 1 && <Col>
+                    <CarsCart onClick={handleNext} />
+                </Col>}
+                {index == 2 && <Col>
                     <BookingDetails
                         onClick={handleNext}
                         onPrev={handlePrev}
@@ -95,7 +99,7 @@ const BookingPage = () => {
                         setUserInfo={setUserInfo}
                     />
                 </Col>}
-                {index == 2 && <Col>
+                {index == 3 && <Col>
                     <BookingPayment
                         onClick={handleNext}
                         onPrev={handlePrev}

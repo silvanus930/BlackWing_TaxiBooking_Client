@@ -9,31 +9,31 @@ import { FaTv } from "react-icons/fa"
 import { NavLink } from 'react-router-dom'
 import CarsCartMobile from './CarsCartMobile'
 
-const CarsCart = () => {
+const CarsCart = ({ onClick }) => {
     const [carsData] = useState(allCarsInfo.allCars)
-    const [changeCard,setChangeCard] = useState(false)
+    const [changeCard, setChangeCard] = useState(false)
 
     const changeHandler = () => {
-        if(window.innerWidth <= 870){
+        if (window.innerWidth <= 870) {
             setChangeCard(true)
-        }else{
+        } else {
             setChangeCard(false)
         }
     }
-    window.addEventListener('resize',changeHandler)
+    window.addEventListener('resize', changeHandler)
 
     return (
         <>
-            {!changeCard ? 
-            <>
+            {!changeCard ?
+                <>
 
-                    <section className="py-12 bg-gray-50">
+                    <section className="py-12">
                         <div className="max-w-screen-lg px-4 mx-auto">
                             <div className="grid grid-cols-1">
                                 {
                                     carsData.map(({ id, image, people, bags, price, name }) => {
                                         return (
-                                            <Fade left>
+                                            <Fade right>
                                                 <div className="grid grid-cols-3 bg-white rounded-lg shadow-xl overflow-hidden mb-6">
 
                                                     <div className="col-span-1 p-3 box-border flex flex-none px-3">
@@ -55,12 +55,9 @@ const CarsCart = () => {
                                                         </div>
                                                     </div>
 
-                                                    <div className="col-span-1 flex flex-col justify-center items-center bg-gray-200 py-4">
+                                                    <div className="flex flex-col justify-center items-center bg-gray-200 py-4">
                                                         <h1 className="text-4xl text-gray-700 font-semibold pb-6">{price}</h1>
-                                                        <NavLink to={`/car-cart/${id}`}>
-                                                            <button className="bg-green-600 text-white text-xl rounded shadow-xl px-9 py-2 w-64 hover:bg-green-700" >Select</button>
-                                                        </NavLink>
-
+                                                        <button className="bg-green-600 text-white text-xl rounded shadow-xl px-9 py-2 w-64 hover:bg-green-700" onClick={onClick}>Select</button>
                                                     </div>
                                                 </div>
                                             </Fade>
@@ -70,9 +67,9 @@ const CarsCart = () => {
                             </div>
                         </div>
                     </section>
-            </>
-            : <CarsCartMobile/>}
-               
+                </>
+                : <CarsCartMobile />}
+
 
         </>
     )

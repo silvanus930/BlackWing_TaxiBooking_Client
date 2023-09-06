@@ -34,7 +34,7 @@ const TopSection = () => {
     return (
         <Wrapper>
             <section className="top__section py-12">
-                <div className="container top_container px-4">
+                <div className="container top_container px-4 pt-10">
                     <Fade left>
                         <h1 className="text-white text-2xl md:text-3xl lg:text-4xl xl:text-4xl py-9 font-semibold">YOUR PERSONAL <br />{'CHAUFFEUR SERVICE'}</h1>
                     </Fade>
@@ -137,7 +137,7 @@ const Wrapper = Styled.section`
     background:url('../../assets/top-section-banner-image.png');
     background-size:cover;
     background-repeat:no-repeat;
-    height:400px;
+    height:500px;
     margin:0px 0px;
     max-width:100%;
 }
