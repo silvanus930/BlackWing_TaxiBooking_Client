@@ -17,7 +17,7 @@ const TopSection = () => {
             <section className="top__section py-12">
                 <div className="container px-4">
                     <Fade left>
-                        <h1 className="text-white text-2xl md:text-3xl lg:text-4xl xl:text-4xl py-9 font-semibold">Transfers from airports and hotels</h1>
+                        <h1 className="text-white text-2xl md:text-3xl lg:text-4xl xl:text-4xl py-9 font-semibold">Transfers from anywhere to anywhere you want</h1>
                     </Fade>
 
                     <div className="row row-cols-1 row-cols-md-3 row-cols-lg-3 row-cols-xl-3 g-3">

@@ -1,13 +1,24 @@
 import React, { useState } from 'react'
 import { FcButtingIn } from "react-icons/fc";
 import Zoom from 'react-reveal/Zoom';
-import { NavLink } from 'react-router-dom'
+import Fade from 'react-reveal/Fade';
+import { NavLink, useNavigate } from 'react-router-dom'
 import CountryList from '../data/jamrock'
 import CurrencyList from '../data/jamrock'
 
 const Navbar = () => {
     const [countryData] = useState(CountryList.countryList)
     const [CurrencyData] = useState(CurrencyList.currencyList)
+    const navigate = useNavigate();
+    const handleLogin = () => {
+        navigate('/sign-in');
+    };
+
+    const isLogin = () => {
+        const token = localStorage.getItem('wingToken');
+        console.log('Token: ', !!token);
+        return !!token;
+    }
 
     return (
         <>
@@ -23,6 +34,14 @@ const Navbar = () => {
 
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center ">
+                                <li className="nav-item me-2">
+                                    <NavLink className="nav-link active" aria-current="page" to="/"><span className="text-sm text-gray-400">Home</span></NavLink>
+                                </li>
+                                <li className="nav-item border-end border-secondary pe-3 me-2">
+                                    <NavLink className="nav-link cursor-pointer text-gray-600" to="/contact"><span className="text-sm text-gray-400">Contact Us</span></NavLink>
+                                </li>
+
+
                                 <li className="nav-item dropdown me-2">
                                     <NavLink className="nav-link dropdown-toggle" to="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <span className="text-sm text-gray-400">For customers</span>
@@ -38,30 +57,26 @@ const Navbar = () => {
                                     <NavLink className="nav-link dropdown-toggle" to="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <span className="text-sm text-gray-400">For partners</span>
                                     </NavLink>
-                                    <Zoom>
+                                    <Fade top>
                                         <ul className="dropdown-menu shadow-sm mt-4" aria-labelledby="navbarDropdown">
                                             <li><span className="dropdown-item"><span className="text-sm text-gray-400">For travel agencies</span></span></li>
                                             <li><span className="dropdown-item"><span className="text-sm text-gray-400 text-gray-400">For webmasters</span></span></li>
                                             <li><span className="dropdown-item"><span className="text-sm text-gray-400 text-gray-400">For transfer compnaies</span></span></li>
                                             <li><span className="dropdown-item"><span className="text-sm text-gray-400">For individual drivers</span></span></li>
                                         </ul>
-                                    </Zoom>
+                                    </Fade>
                                 </li>
                                 <li className="nav-item me-2">
-                                    <NavLink className="nav-link active" aria-current="page" to="/"><span className="text-sm text-gray-400">Car rental with driver</span></NavLink>
+                                    <NavLink className="nav-link active" aria-current="page" to="/car-cart"><span className="text-sm text-gray-400">Select Car</span></NavLink>
                                 </li>
-                                <li className="nav-item me-2">
-                                    <NavLink className="nav-link d-flex align-items-center" to="/">
-                                        <FcButtingIn />
-                                        <span className="text-sm text-gray-400 pl-2"> Ski transfer</span>
-                                    </NavLink>
-                                </li>
+
+
                             </ul>
 
 
                             {/* Right side content of nav bar  */}
                             <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
-                                <li className="nav-item dropdown me-2">
+                                {/* <li className="nav-item dropdown me-2">
                                     <NavLink className="nav-link " to="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <span className="text-sm text-gray-400">BYN</span>
                                     </NavLink>
@@ -85,7 +100,7 @@ const Navbar = () => {
                                         </ul>
                                     </Zoom>
 
-                                </li>
+                                </li> */}
                                 <li className="nav-item dropdown me-2 border-end border-secondary pe-3">
                                     <NavLink className="nav-link " to="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <img className="w-6 h-6" src="../../assets/Flag/united-kingdom.png" alt="united-kingdom flag" />
@@ -111,20 +126,27 @@ const Navbar = () => {
                                     </Zoom>
                                 </li>
 
-                                <li className="nav-item me-2">
-                                    <NavLink className="nav-link active" aria-current="page" to="/"><span className="text-sm text-gray-400">Help</span></NavLink>
-                                </li>
-                                <li className="nav-item">
-                                    <NavLink className="nav-link cursor-pointer text-gray-600" to="/contact"><span className="text-sm text-gray-400">Contact Us</span></NavLink>
-                                </li>
-                                <li className="nav-item me-2">
-                                    <button className="btn px-4 py-1 border border-secondary rounded-3"><span className="text-sm text-gray-400">Login</span></button>
-                                </li>
+                                {!isLogin() && <li className="nav-item">
+                                    <button className="btn" onClick={handleLogin} ><span className="text-sm text-gray-400">Login</span></button>
+                                </li>}
+
+                                {isLogin() && <li className="nav-item dropdown">
+                                    <NavLink className="nav-link dropdown-toggle" to="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span className="text-sm text-gray-400">User</span>
+                                    </NavLink>
+                                    <Zoom>
+                                        <ul className="dropdown-menu shadow-sm" style={{ width: '100px' }} aria-labelledby="navbarDropdown">
+                                            <NavLink className="nav-link active" aria-current="page" to="/profile"><li><span className="dropdown-item"><span className="text-sm text-gray-400">Profile</span></span></li></NavLink>
+                                            <li><span className="dropdown-item"><span className="text-sm text-gray-400">Log Out</span></span></li>
+                                        </ul>
+                                    </Zoom>
+                                </li>}
+
                             </ul>
                         </div>
                     </div>
                 </nav>
-            </header>
+            </header >
         </>
     )
 }

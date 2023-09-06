@@ -1,7 +1,8 @@
 import { STRIPE_TEST_PUBLIC_KEY, STRIPE_PUBLIC_KEY } from "../constants";
 
 export const getStripeKey = () => {
-    return getStripeTestMode() ? STRIPE_TEST_PUBLIC_KEY : STRIPE_PUBLIC_KEY;
+    return STRIPE_TEST_PUBLIC_KEY;
+    // return getStripeTestMode() ? STRIPE_TEST_PUBLIC_KEY : STRIPE_PUBLIC_KEY;
 };
 
 export const getStripeTestMode = () => {
@@ -14,5 +15,14 @@ export const setStripeTestMode = value => {
     }
     else {
         window.localStorage.removeItem('stripeTestMode');
+    }
+}
+
+export const getTokenFromPath = value => {
+    if (value && value.split('/').length > 1) {
+        return value.split('/')[2];
+    }
+    else {
+        return '';
     }
 }

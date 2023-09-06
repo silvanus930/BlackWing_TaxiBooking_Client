@@ -4,8 +4,11 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { getStripeKey } from './res/utils';
 
-import { BookingPage, Contact, Homepage, Navbar, PaymentAdditional, SearchPage } from 'components';
+import { BookingPage, Contact, Homepage, Navbar, PaymentAdditional, ProfilePage, SearchPage } from 'components';
 import SignIn from 'components/AuthPage/sign-in';
+import ResetPassword from 'components/AuthPage/reset-password';
+// import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const stripePromise = loadStripe(getStripeKey());
 const options = {
@@ -26,6 +29,7 @@ const App = () => {
 
   return (
     <Elements stripe={stripePromise} options={options}>
+      {/* <ToastContainer /> */}
       {!isHideNav && <Navbar />}
       <Routes>
         <Route exact path="/" element={<Homepage />} />
@@ -33,7 +37,10 @@ const App = () => {
         <Route exact path="/car-cart" element={<SearchPage />} />
         <Route exact path="/car-cart/:id" element={<PaymentAdditional />}></Route>
         <Route exact path="/booking" element={<BookingPage />}></Route>
+        <Route exact path="/profile" element={<ProfilePage />}></Route>
         <Route exact path="/sign-in" element={<SignIn />}></Route>
+        <Route exact path="/reset-password" element={<ResetPassword />}></Route>
+        <Route exact path="/reset-password/:token" element={<ResetPassword />}></Route>
       </Routes>
     </Elements>
   )
